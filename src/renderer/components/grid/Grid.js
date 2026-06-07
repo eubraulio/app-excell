@@ -1,6 +1,8 @@
 import { createGrid } from "../../adapters/handsontableAdapter.js";
 import { handleCellChange } from "../../modules/spreadsheetController.js";
 
+let hotInstance = null;
+
 export function initGrid() {
     const container = document.getElementById('grid');
 
@@ -8,5 +10,9 @@ export function initGrid() {
         Array.from({length: 10}, () => '')
     );
 
-    createGrid(container, data, handleCellChange);
+    hotInstance = createGrid(container, data, handleCellChange);
+}
+
+export function getGridInstance() {
+    return hotInstance;
 }

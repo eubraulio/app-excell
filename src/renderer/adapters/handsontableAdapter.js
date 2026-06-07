@@ -4,7 +4,9 @@ export function createGrid(container, data, onChange) {
         rowHeaders: true,
         colHeaders: true,
         licenseKey: 'non-commercial-and-evaluation',
-        afterChange: onChange
-    })
-
+        afterChange: (changes, source) => {
+            if(source === 'internal') return;
+            onChange(changes);
+        }
+    });
 }

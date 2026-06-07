@@ -5,12 +5,5 @@ export function addressToCoords(address) {
     const col = colLetter.charCodeAt(0) - 65;
     const row = rowNumber - 1;
 
-    return { row, col };
-}
-
-export function setCell(state, row, col, value) {
-    if(!state.sheet.cells[row]) {
-        state.sheet.cells[row] = {};
-    }
-    state.sheet.cells[row][col] = value;
+    return {row, col}
 }

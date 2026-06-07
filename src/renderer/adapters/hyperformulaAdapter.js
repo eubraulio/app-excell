@@ -1,9 +1,30 @@
-const hf = HyperFormula.buildEmpty();
+import { addressToCoords } from '../utils/cellUtils.js';
 
-export function setFormula(address, formula) {
-    hf.setCellContents(address, formula);
+const hf = HyperFormula.buildEmpty({ licenseKey: 'gpl-v3' });
+
+const sheetName = 'Sheet1';
+hf.addSheet(sheetName);
+const sheetId = hf.getSheetId(sheetName);
+
+export function getSheetId() {
+    return sheetId;
 }
 
-export function getValue(address) {
-    return hf.getCellValue(address);
+export function setCell(address, input) {
+    const {row, col} = addressToCoords(address);
+
+    hf.setCellContents(
+        { sheet: sheetId, row, col},
+        input
+    );
+}
+
+export function getCellValue(address) {
+    const { row, col } = addressToCoords(address);
+
+    return hf.getCellValue({
+        sheet: sheetId,
+        row, 
+        col
+    });
 }

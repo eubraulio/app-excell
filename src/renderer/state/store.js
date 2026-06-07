@@ -1,5 +1,5 @@
 export const state = {
-    shee: {
+    sheet: {
         cells: {}
     }, 
     selection: "A1"
