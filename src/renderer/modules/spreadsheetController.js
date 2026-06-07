@@ -1,6 +1,4 @@
-// import { setCell } from "../services/gridService.js";
 import { processInput } from "../services/formulaService.js";
-// import { state } from "../state/store.js";
 import { getGridInstance } from "../components/grid/Grid.js";
 
 function toAddress(row, col) {
@@ -24,6 +22,5 @@ export function handleCellChange(changes) {
 
             grid.setDataAtCell(row, col, value, 'internal');
         });
-        // setCell(state, row, col, {raw: newVal,value});
     });
 }
