@@ -13,10 +13,12 @@ export function getSheetId() {
 export function setCell(address, input) {
     const {row, col} = addressToCoords(address);
 
-    hf.setCellContents(
+    const changes = hf.setCellContents(
         { sheet: sheetId, row, col},
         input
     );
+
+    return changes;
 }
 
 export function getCellValue(address) {

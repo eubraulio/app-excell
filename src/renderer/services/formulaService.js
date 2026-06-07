@@ -1,6 +1,5 @@
-import { setCell, getCellValue } from '../adapters/hyperformulaAdapter.js';
+import { setCell } from '../adapters/hyperformulaAdapter.js';
 
 export function processInput(address, input) {
-  setCell(address, input);
-  return getCellValue(address);
+  return setCell(address, input);
 }
