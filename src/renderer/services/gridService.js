@@ -8,9 +8,10 @@ export function addressToCoords(address) {
     return { row, col };
 }
 
-export function setCell(state, row, col, value) {
-    if(!state.sheet.cells[row]) {
-        state.sheet.cells[row] = {};
-    }
-    state.sheet.cells[row][col] = value;
+export function setCell(state, address, data) {
+    state.sheet.cells[address] = data;
+}
+
+export function getCell(state, address) {
+    return state.sheet.cells[address] || { raw: "", value: ""};
 }
