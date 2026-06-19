@@ -1,4 +1,5 @@
 import { addressToCoords } from '../utils/cellUtils.js';
+import { state } from '../state/store.js';
 
 const hf = HyperFormula.buildEmpty({ licenseKey: 'gpl-v3' });
 
@@ -28,5 +29,14 @@ export function getCellValue(address) {
         sheet: sheetId,
         row, 
         col
+    });
+}
+
+export function restoreEngine() {
+    state.sheets.forEach(sheet => {
+        Object.entries(sheet.cells).forEach(([address, cell]) => {
+            if(!cell.raw) return;
+            setCell(address, cell.raw);
+        });
     });
 }

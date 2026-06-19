@@ -1,3 +1,5 @@
+import { getActiveSheet } from "./sheetService.js";
+
 export function addressToCoords(address) {
     const colLetter = address.match(/[A-Z]+/)[0];
     const rowNumber = parseInt(address.match(/\d+/)[0], 10);
@@ -8,10 +10,12 @@ export function addressToCoords(address) {
     return { row, col };
 }
 
-export function setCell(state, address, data) {
-    state.sheet.cells[address] = data;
+export function setCell(address, data) {
+    const sheet = getActiveSheet();
+    sheet.cells[address] = data;
 }
 
-export function getCell(state, address) {
-    return state.sheet.cells[address] || { raw: "", value: ""};
+export function getCell(address) {
+    const sheet = getActiveSheet();
+    return sheet.cells[address] || {raw: "", value: ""};
 }

@@ -1,8 +1,9 @@
 import { processInput } from "../services/formulaService.js";
 import { setCell } from "../services/gridService.js";
-import { state } from "../state/store.js";
 import { getGridInstance } from "../components/grid/Grid.js";
 import { updateFormulaBar } from "../components/formula-bar/FormulaBar.js";
+import { saveWorkbook } from "../services/storageService.js";
+import { getActiveSheet } from "../services/sheetService.js";
 
 function toAddress(row, col) {
     const colLetter = String.fromCharCode(65 + col);
@@ -17,7 +18,7 @@ export function handleCellChange(changes) {
     changes.forEach(([row, col, oldVal, newVal]) => {
         const address = toAddress(row, col);
 
-        setCell(state, address, {
+        setCell(address, {
             raw: newVal,
             value: null
         });
@@ -34,9 +35,11 @@ export function handleCellChange(changes) {
 
             const addr = toAddress(row, col);
 
-            const existing = state.sheet.cells[addr] || {raw: ""};
+            const sheet = getActiveSheet();
 
-            setCell(state, addr, {
+            const existing = sheet.cells[addr] || {raw: ""};
+
+            setCell(addr, {
                 raw: existing.raw,
                 value
             });
@@ -44,4 +47,5 @@ export function handleCellChange(changes) {
         });
     });
     updateFormulaBar();
+    saveWorkbook();
 }

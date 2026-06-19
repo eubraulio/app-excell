@@ -6,7 +6,7 @@ export function updateFormulaBar() {
     const input = document.getElementById("formula-input");
     const addressBox = document.getElementById("cell-address");
 
-    const cell = getCell(state, state.selection);
+    const cell = getCell(state.selection);
 
     addressBox.textContent = state.selection;
     input.value = cell?.raw ?? "";
