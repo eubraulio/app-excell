@@ -2,15 +2,11 @@ import { state } from "../../state/store.js";
 import { getCell } from "../../services/gridService.js";
 import { getGridInstance } from "../grid/Grid.js";
 
-
 export function updateFormulaBar() {
     const input = document.getElementById("formula-input");
     const addressBox = document.getElementById("cell-address");
 
-
     const cell = getCell(state, state.selection);
-
-    console.log("FORMULA BAR:",state.selection,cell);
 
     addressBox.textContent = state.selection;
     input.value = cell?.raw ?? "";
@@ -29,5 +25,4 @@ export function initFormulaBar() {
             grid.setDataAtCell(row, col, input.value);
         }
     });
-    console.log(state);
 }

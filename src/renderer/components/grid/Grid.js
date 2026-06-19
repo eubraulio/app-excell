@@ -9,7 +9,6 @@ export function initGrid() {
     const data = Array.from({length: 20}, () =>
         Array.from({length: 10}, () => '')
     );
-
     hotInstance = createGrid(container, data, handleCellChange);
 }
 

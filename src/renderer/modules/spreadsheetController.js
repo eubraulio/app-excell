@@ -9,9 +9,7 @@ function toAddress(row, col) {
     return colLetter + (row + 1);
 }
 
-
 export function handleCellChange(changes) {
-    console.log("selection:", state.selection);
     if(!changes) return;
 
     const grid = getGridInstance();
@@ -26,14 +24,10 @@ export function handleCellChange(changes) {
 
         updateFormulaBar();
 
-        console.log("CELL SAVED:", address, state.sheet.cells[address]);
-
         const engineChanges = processInput(address, newVal);
 
-        console.log(engineChanges);
-
         engineChanges.forEach(change => {
-                console.log(change);
+            console.log(change);
 
             const { row, col } = change.address;
             const value = change.newValue;
@@ -49,7 +43,5 @@ export function handleCellChange(changes) {
             grid.setDataAtCell(row, col, value, 'internal');
         });
     });
-
-    console.log("Atualizando FormulaBar para:", state.selection);
     updateFormulaBar();
 }
